@@ -1,0 +1,6 @@
+Invoking command in '/home/usuario/Descargas/pymav/build/pymav': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/usuario/Descargas/pymav -DCMAKE_INSTALL_PREFIX=/home/usuario/Descargas/pymav/install/pymav
+Invoked command in '/home/usuario/Descargas/pymav/build/pymav' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/usuario/Descargas/pymav -DCMAKE_INSTALL_PREFIX=/home/usuario/Descargas/pymav/install/pymav
+Invoking command in '/home/usuario/Descargas/pymav/build/pymav': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/usuario/Descargas/pymav/build/pymav -- -j6 -l6
+Invoked command in '/home/usuario/Descargas/pymav/build/pymav' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/usuario/Descargas/pymav/build/pymav -- -j6 -l6
+Invoking command in '/home/usuario/Descargas/pymav/build/pymav': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/usuario/Descargas/pymav/build/pymav
+Invoked command in '/home/usuario/Descargas/pymav/build/pymav' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/usuario/Descargas/pymav/build/pymav

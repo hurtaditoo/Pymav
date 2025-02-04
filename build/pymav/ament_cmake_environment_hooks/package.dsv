@@ -1,0 +1,4 @@
+source;share/pymav/local_setup.bash
+source;share/pymav/local_setup.dsv
+source;share/pymav/local_setup.sh
+source;share/pymav/local_setup.zsh
