@@ -2,8 +2,8 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int32
-from geometry_msgs.msg import Point
+from std_msgs.msg import Float32
+from geometry_msgs.msg import PoseStamped
 from pymavlink import mavutil
 import time
 
@@ -12,11 +12,11 @@ class BatteryGPSNode(Node):
         super().__init__('battery_gps_node')
         
         # Publisher for battery status
-        self.battery_publisher = self.create_publisher(Int32, 'battery_status', 10)
+        self.battery_publisher = self.create_publisher(Float32, 'battery_status', 10)
         
         # Subscriber to target GPS position
         self.target_subscriber = self.create_subscription(
-            Point, 'target_gps', self.target_callback, 10
+            PoseStamped, 'target_gps', self.target_callback, 10
         )
         
         # Connection to the drone simulator (SITL)
@@ -29,10 +29,10 @@ class BatteryGPSNode(Node):
 
     def publish_battery_status(self):
         # Read battery status from the drone
-        msg = self.connection.recv_match(type='BATTERY_STATUS', blocking=False)
+        msg = self.connection.recv_match(type='BATTERY_STATUS', blocking=True)
         if msg:
             battery_percentage = msg.battery_remaining
-            battery_msg = Int32()
+            battery_msg = Float32()
             battery_msg.data = battery_percentage
             self.battery_publisher.publish(battery_msg)
             self.get_logger().info(f"Battery status: {battery_percentage}%")
