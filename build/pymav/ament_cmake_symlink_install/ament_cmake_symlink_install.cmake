@@ -310,8 +310,8 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
-# install(PROGRAMS "src/mission_control_node.py" "src/battery_gps_node.py" "DESTINATION" "lib/pymav")
-ament_cmake_symlink_install_programs("/home/usuario/Descargas/pymav" PROGRAMS "src/mission_control_node.py" "src/battery_gps_node.py" "DESTINATION" "lib/pymav")
+# install(PROGRAMS "src/pymav/mission_control_node.py" "src/pymav/battery_gps_node.py" "DESTINATION" "lib/pymav")
+ament_cmake_symlink_install_programs("/home/usuario/Descargas/pymav" PROGRAMS "src/pymav/mission_control_node.py" "src/pymav/battery_gps_node.py" "DESTINATION" "lib/pymav")
 
 # install(FILES "/home/usuario/Descargas/pymav/build/pymav/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/pymav" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/usuario/Descargas/pymav" FILES "/home/usuario/Descargas/pymav/build/pymav/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/pymav" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

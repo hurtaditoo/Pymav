@@ -1,1 +1,1 @@
-/home/usuario/Descargas/pymav/src/mission_control_node.py
+/home/usuario/Descargas/pymav/src/pymav/mission_control_node.py
