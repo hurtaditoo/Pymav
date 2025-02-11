@@ -1,6 +1,6 @@
 set(_AMENT_PACKAGE_NAME "pymav")
 set(pymav_VERSION "0.0.0")
-set(pymav_MAINTAINER "usuario <usuario@todo.todo>")
+set(pymav_MAINTAINER "hurtaditoo <al415507@uji.es>")
 set(pymav_BUILD_DEPENDS )
 set(pymav_BUILDTOOL_DEPENDS "ament_cmake")
 set(pymav_BUILD_EXPORT_DEPENDS )

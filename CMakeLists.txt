@@ -9,8 +9,8 @@ find_package(std_msgs REQUIRED)
 
 # Instalar los nodos Python (sin usar ament_python_install_package)
 install(PROGRAMS
-  src/pymav/mission_control_node.py
-  src/pymav/battery_gps_node.py
+  src/mission_control_node.py
+  src/battery_gps_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

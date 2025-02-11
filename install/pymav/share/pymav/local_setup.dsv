@@ -1,1 +1,2 @@
-/home/usuario/Descargas/pymav/build/pymav/ament_cmake_environment_hooks/local_setup.dsv
+source;share/pymav/environment/ament_prefix_path.sh
+source;share/pymav/environment/path.sh

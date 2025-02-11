@@ -1,1 +1,1 @@
-/home/usuario/Descargas/pymav/build/pymav/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/pymav
+rclpy;geometry_msgs;std_msgs;pymavlink;ament_lint_auto;ament_lint_common
