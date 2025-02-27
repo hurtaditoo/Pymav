@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/usuario/Descargas/pymav
+CMAKE_SOURCE_DIR = /home/usuario/Documentos/GitHub/pymav
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/usuario/Descargas/pymav/build/pymav
+CMAKE_BINARY_DIR = /home/usuario/Documentos/GitHub/pymav/build/pymav
 
 # Utility rule file for uninstall.
 
@@ -78,6 +78,6 @@ CMakeFiles/uninstall.dir/clean:
 .PHONY : CMakeFiles/uninstall.dir/clean
 
 CMakeFiles/uninstall.dir/depend:
-	cd /home/usuario/Descargas/pymav/build/pymav && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usuario/Descargas/pymav /home/usuario/Descargas/pymav /home/usuario/Descargas/pymav/build/pymav /home/usuario/Descargas/pymav/build/pymav /home/usuario/Descargas/pymav/build/pymav/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/usuario/Documentos/GitHub/pymav/build/pymav && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/usuario/Documentos/GitHub/pymav /home/usuario/Documentos/GitHub/pymav /home/usuario/Documentos/GitHub/pymav/build/pymav /home/usuario/Documentos/GitHub/pymav/build/pymav /home/usuario/Documentos/GitHub/pymav/build/pymav/CMakeFiles/uninstall.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/uninstall.dir/depend
 

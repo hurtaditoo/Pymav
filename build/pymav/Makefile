@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/usuario/Descargas/pymav
+CMAKE_SOURCE_DIR = /home/usuario/Documentos/GitHub/pymav
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/usuario/Descargas/pymav/build/pymav
+CMAKE_BINARY_DIR = /home/usuario/Documentos/GitHub/pymav/build/pymav
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/usuario/Descargas/pymav/build/pymav/CMakeFiles /home/usuario/Descargas/pymav/build/pymav//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usuario/Documentos/GitHub/pymav/build/pymav/CMakeFiles /home/usuario/Documentos/GitHub/pymav/build/pymav//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/usuario/Descargas/pymav/build/pymav/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/usuario/Documentos/GitHub/pymav/build/pymav/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

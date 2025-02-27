@@ -2,23 +2,11 @@
 
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import Point
+from std_msgs.msg import Int32
 from pymavlink import mavutil
 import time
 import sys
-
-# Function to read battery status message
-def read_battery_status(connection):
-    msg = connection.recv_match(type='BATTERY_STATUS', blocking=True, timeout=5)    # 'blocking' is used to wait for the message
-    if msg:
-        voltage = msg.voltages[0] / 1000.0                                          # Convert mv to V
-        current = msg.current_battery / 100.0                                       # Convert cA to A
-        remaining = msg.battery_remaining                                           # Remaining battery percentage
-        print(f"Battery: {voltage:.2f} V, Current: {current:.2f} A, Remaining: {remaining} %")
-        return remaining
-    else:
-        print("Failed to get battery status.")
-        return None
 
 
 # Class to create a node that moves the drone to a target GPS position
@@ -27,7 +15,10 @@ class MissionControlNode(Node):
         super().__init__('mission_control_node')
 
         # Publisher to the target_gps topic
-        self.target_publisher = self.create_publisher(PoseStamped, 'target_gps', 10)
+        self.target_publisher = self.create_publisher(Point, 'target_gps', 10)
+
+        # Subscriber to the target_gps topic
+        self.target_subscriber = self.create_subscription(Int32, 'battery_status', self.battery_callback, 10)
 
         # Connection to the drone simulator (SITL)
         self.connection = mavutil.mavlink_connection('udp:127.0.0.1:14550')
@@ -41,8 +32,6 @@ class MissionControlNode(Node):
         # Arm the drone and take off before sending the target
         self.arm_and_takeoff()
 
-        # Set a timer to periodically check the battery status
-        self.battery_timer = self.create_timer(2.0, self.check_battery_status)
 
     def set_mode(self, mode):
         self.connection.set_mode(mode)                          # Change the flight mode of the drone
@@ -64,7 +53,7 @@ class MissionControlNode(Node):
         )
 
         # Wait for the drone to arm
-        time.sleep(5)
+        time.sleep(2)
 
         # Take off to the target altitude
         self.get_logger().info("Taking off...")
@@ -73,41 +62,23 @@ class MissionControlNode(Node):
             self.connection.target_component,
             mavutil.mavlink.MAV_CMD_NAV_TAKEOFF,
             0,                                                  # Confirmation (0 means no confirmation)
-            0, 0, 0, 0, 0, 0, self.target_alt                   # Target altitude
+            0, 0, 0, 0, 0, 0, 10                                # Target altitude
         )
 
         # Wait for takeoff to complete
-        time.sleep(15)
-
-        # Start moving the drone to the target GPS coordinates
-        self.move_to_target()
-
-    def move_to_target(self):
-        # Send the position command to move the drone
-        target_msg = mavutil.mavlink.MAVLink_set_position_target_global_int_message(
-            0,                                                  # Time_boot_ms (0 means no time-based)
-            self.connection.target_system,
-            self.connection.target_component,
-            mavutil.mavlink.MAV_FRAME_GLOBAL_INT,               # Coordinate frame
-            0b110111111000,                                     # Mask (sending positions and velocity)
-            int(self.target_lat * 1e7),                         # Latitude (in degrees * 1e7)
-            int(self.target_lon * 1e7),                         # Longitude (in degrees * 1e7)
-            self.target_alt,                                    # Altitude in meters
-            0, 0, 0,                                            # Velocities
-            0, 0, 0,                                            # Acceleration in X, Y, Z
-            0, 0                                                # Yaw and Yaw rate
-        )
-
-        self.connection.mav.send(target_msg)
-        self.get_logger().info(f"Moving to target GPS: Lat={self.target_lat}, Lon={self.target_lon}, Alt={self.target_alt} m")
+        time.sleep(12)
 
     # Function called periodically to check battery status
-    def check_battery_status(self):
-        battery_remaining = read_battery_status(self.connection)
+    def battery_callback(self, msg):
+        battery_remaining = msg.data
+
         if battery_remaining is not None:
             self.get_logger().info(f"Battery: {battery_remaining}%")
             if battery_remaining <= 20:
                 self.land_vehicle()
+
+        else:
+            battery_remaining = None
 
     def land_vehicle(self):
         # Send the landing command to the drone
@@ -119,20 +90,15 @@ class MissionControlNode(Node):
             0, 0, 0, 0, 0, 0, 0                 # Additional parameters
         )
         self.get_logger().info("Low battery! Initiating emergency landing.")
+        time.sleep(30)
 
     def publish_target(self):
         # Publish the target GPS coordinates to the ROS2 topic
-        target_point = PoseStamped()
-        # target_point.x = self.target_lat
-        # target_point.y = self.target_lon
-        # target_point.z = self.target_alt
-
-        target_point.header.stamp = self.get_clock().now().to_msg()  # Asignar timestamp
-        target_point.header.frame_id = "map"  # Definir el frame de referencia
-
-        target_point.pose.position.x = self.target_lat
-        target_point.pose.position.y = self.target_lon
-        target_point.pose.position.z = self.target_alt
+        target_point = Point()
+        
+        target_point.x = self.target_lat
+        target_point.y = self.target_lon
+        target_point.z = self.target_alt
 
         self.target_publisher.publish(target_point)
         self.get_logger().info(f"Published target GPS: Lat={self.target_lat}, Lon={self.target_lon}, Alt={self.target_alt} m")
