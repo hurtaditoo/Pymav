@@ -1,2 +1,0 @@
-Invoking command in '/home/usuario/Documentos/GitHub/pymav/build/pymav': /usr/bin/cmake /home/usuario/Documentos/GitHub/pymav -DCMAKE_INSTALL_PREFIX=/home/usuario/Documentos/GitHub/pymav/install/pymav
-Invoked command in '/home/usuario/Documentos/GitHub/pymav/build/pymav' returned '1': /usr/bin/cmake /home/usuario/Documentos/GitHub/pymav -DCMAKE_INSTALL_PREFIX=/home/usuario/Documentos/GitHub/pymav/install/pymav

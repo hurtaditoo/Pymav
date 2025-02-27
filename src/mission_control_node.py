@@ -75,12 +75,12 @@ class MissionControlNode(Node):
         if battery_remaining is not None:
             self.get_logger().info(f"Battery: {battery_remaining}%")
             if battery_remaining <= 20:
-                self.land_vehicle()
+                self.initiate_landing()
 
         else:
             battery_remaining = None
 
-    def land_vehicle(self):
+    def initiate_landing(self):
         # Send the landing command to the drone
         self.connection.mav.command_long_send(
             self.connection.target_system,
