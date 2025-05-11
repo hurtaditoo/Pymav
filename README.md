@@ -2,7 +2,7 @@
 
 This project showcases my work integrating MAVLink with ROS2 to control a drone in a simulated environment using SITL (Software-In-The-Loop). It demonstrates how to interact with a drone using two custom ROS2 nodes and the pymavlink library.
 
-## 🔧 What I Did
+## 🔧 Task Description
 
 I developed two ROS2 nodes from scratch:
 
