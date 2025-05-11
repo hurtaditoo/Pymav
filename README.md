@@ -30,4 +30,4 @@ I developed two ROS2 nodes from scratch:
 
 ## 🎥 Results
 
-You can find a video demonstration of the full system inside this repository — feel free to check it out and see the project in action!
+You can find a video demonstration of the full system inside this repository 👉 [Click here to find the video](./ros-framework.mp4) — feel free to check it out and see the project in action!
